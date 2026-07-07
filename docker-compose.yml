@@ -1,0 +1,17 @@
+# Optional: run PostgreSQL locally for parity with production.
+# Start with:  docker compose up -d
+# Then set DATABASE_URL=postgres://ab_user:ab_pass@localhost:5432/ab_db in .env
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ab_user
+      POSTGRES_PASSWORD: ab_pass
+      POSTGRES_DB: ab_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ab_pgdata:/var/lib/postgresql/data
+
+volumes:
+  ab_pgdata:
